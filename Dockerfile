@@ -16,5 +16,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
  
 EXPOSE 8000
- 
+
+# I should change the command to use Gunicorn before deploying in azure.
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
