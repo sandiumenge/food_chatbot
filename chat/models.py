@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class CustomUser(models.Model):
+class UserProfile(models.Model):
     username = models.CharField(max_length=50)
     foods = models.JSONField(default=list)
     raw_responses = models.TextField(blank=True)

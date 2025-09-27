@@ -1,6 +1,6 @@
 from rest_framework.routers import DefaultRouter
-from chat.api.views import CustomUserViewSet
+from chat.api.views import UserProfileViewSet
 
 router = DefaultRouter()
-router.register('users', CustomUserViewSet, basename='user')
+router.register('users', UserProfileViewSet, basename='user')
 urlpatterns = router.urls

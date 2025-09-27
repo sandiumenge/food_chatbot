@@ -1,7 +1,7 @@
 from rest_framework import serializers
-from chat.models import CustomUser
+from chat.models import UserProfile
 
-class CustomUserSerializer(serializers.ModelSerializer):
+class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
-        model = CustomUser
+        model = UserProfile
         fields = '__all__'
