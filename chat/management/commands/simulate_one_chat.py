@@ -17,8 +17,13 @@ class Command(BaseCommand):
         task = "Ask the interviewed what are their 3 favourite foods?"
         try:
             question = agent_a.ask_question(task)
+            self.stdout.write(self.style.NOTICE(f"AgentA question: {question}"))
+
             response = agent_b.respond_to_question(question)
+            self.stdout.write(self.style.NOTICE(f"AgentB response: {response}"))
+
             foods, is_vegetarian = parse_foods(response)
+            self.stdout.write(self.style.NOTICE(f"Parsed foods: {foods}, Vegetarian? {is_vegetarian}"))
 
             UserProfile.objects.create(
                 username=agent_b.name,
@@ -26,9 +31,8 @@ class Command(BaseCommand):
                 raw_responses=response,
                 is_vegetarian=is_vegetarian
             )
+            
+            self.stdout.write(self.style.SUCCESS("Chat simulation saved successfully."))
+
         except Exception as e:
-            self.stdout.write(
-                self.style.ERROR(
-                    f"Error during chat simulation: {e}"
-                )
-            )
+            self.stdout.write(self.style.ERROR(f"Error during chat simulation: {e}"))

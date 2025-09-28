@@ -4,7 +4,7 @@ import json
 
 def parse_foods(raw_response):
     system_role = (
-        "You are a helpful assistant who extracts exactly 3 foods from user text. "
+        "You are a helpful assistant who extracts the 3 foods from the user text. "
         "Return a JSON object like this: "
         '{"foods": ["food1", "food2", "food3"], "is_vegetarian": true_or_false}. '
         "Determine if all foods are vegetarian."
