@@ -13,6 +13,12 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument('--count', type=int, default=100, help="Number of chats to simulate")
 
+    def print_progress(self, current, total):
+        percent = int((current / total) * 100)
+        bar = "█" * (percent // 2) + "-" * (50 - percent // 2)
+        self.stdout.write(f"\r|{bar}| {percent}%", ending="")
+        self.stdout.flush()
+
     def handle(self, *args, **options):
         count = options['count']
         agent_a = AgentA()
@@ -38,6 +44,7 @@ class Command(BaseCommand):
                 
                 i += 1                      # Only increment when successful
                 consecutive_errors = 0      # Reset on success
+                self.print_progress(i, 100)
 
             except Exception as e:
                 consecutive_errors += 1
