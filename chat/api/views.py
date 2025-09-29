@@ -6,6 +6,7 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from chat.services import parse_foods
+from django.http import JsonResponse
 import openai
 import os
 
@@ -37,3 +38,6 @@ class UserProfileViewSet(viewsets.ModelViewSet):
         veg_qs = self.get_queryset().filter(is_vegetarian=True).order_by('created_at')
         serializer = self.get_serializer(veg_qs, many=True)
         return Response(serializer.data)
+
+def health(request):
+    return JsonResponse({"status": "ok"})
