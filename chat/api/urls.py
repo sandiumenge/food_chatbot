@@ -6,7 +6,6 @@ from chat.api import views
 router = DefaultRouter()
 router.register('users', UserProfileViewSet, basename='user')
 
-urlpatterns = router.urls
 urlpatterns = router.urls + [
     path('health/', views.health, name='health'),
 ]
