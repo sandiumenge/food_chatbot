@@ -36,7 +36,6 @@ def chat_view(request):
             raw_response = form.cleaned_data['raw_responses']
             chat.append({'role':'user', 'text': raw_response})
 
-            # Parse foods
             try:
                 foods, is_vegetarian = parse_foods(raw_response)
             except Exception:

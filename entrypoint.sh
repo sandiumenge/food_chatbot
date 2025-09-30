@@ -1,5 +1,5 @@
 #!/bin/sh
-set -e  # Salir si algún comando falla
+set -e
 
 echo "Running collectstatic..."
 python manage.py collectstatic --noinput
