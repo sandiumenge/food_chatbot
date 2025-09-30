@@ -4,6 +4,7 @@ A Django-based chatbot web application that uses OpenAI's GPT models to interact
 
 This is a project done for the application process of the company Elephants in the Room.
 
+
 ## Structure
 
 The project runs on a docker with a PostgreSQL database both deployed in Azure.
@@ -47,6 +48,9 @@ Te business idea with this would be for example presenting this interface as a f
 
 To make the interface I used a CDN to make a simple and easy interface as the main focus of the project was the backend.
 
+I also tried (as a personal challenge) to do everything on the backend with a static HTML using POST and GETs to do the interactions instead of event listeners and to practice with the Django Forms. Because of that you will see that it is a bit slow (as it has to wait for the ChatGPT requests and responses between the GET and POSTs) and that the send button instead of being interactive, sends a POST and reloads the page, but considering that it's for a backend position I thought that it could be a fun challenge.
+
+
 ### MANAGEMENT COMMANDS
 I made some management commands, for example simulate_chats.py to make the 100 conversations between Chatgpt A and Chatgpt B:
 ```bash
@@ -73,6 +77,7 @@ food_parser is the function that parses your answer and returns the 3 item list 
 
 ### AUTHENTICATION
 The instructions asked specifically to add authentication to the API endpoint for the vegetarian_list, so I made only this API endpoint private. This way everyone can access the main one with all the users but only authorized users can access the vegetarian list.
+
 
 ### LOCAL DEPLOYMENT
 There's also a docker-compose that allows for local deployment running the Dockerfile instead of the Dockerfile.prod. This one uses CMD instead of Gunicorn and the docker-compose deploys a local PostgreSQL database for testing.
