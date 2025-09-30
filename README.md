@@ -73,3 +73,6 @@ food_parser is the function that parses your answer and returns the 3 item list 
 
 ### AUTHENTICATION
 The instructions asked specifically to add authentication to the API endpoint for the vegetarian_list, so I made only this API endpoint private. This way everyone can access the main one with all the users but only authorized users can access the vegetarian list.
+
+### LOCAL DEPLOYMENT
+There's also a docker-compose that allows for local deployment running the Dockerfile instead of the Dockerfile.prod. This one uses CMD instead of Gunicorn and the docker-compose deploys a local PostgreSQL database for testing.
