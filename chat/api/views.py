@@ -35,9 +35,15 @@ class UserProfileViewSet(viewsets.ModelViewSet):
         
     @action(detail=False, methods=['get'], url_path='vegetarians')
     def vegetarian_list(self, request):
-        veg_qs = self.get_queryset().filter(is_vegetarian=True).order_by('created_at')
-        serializer = self.get_serializer(veg_qs, many=True)
-        return Response(serializer.data)
+        veg_qs = self.get_queryset().filter(is_vegetarian=True).order_by('created_at')        
+        data = [
+            {
+                'username': user.username,
+                'foods': user.foods
+            }
+            for user in veg_qs
+        ]    
+        return Response(data)
 
 def health(request):
     return JsonResponse({"status": "ok"})

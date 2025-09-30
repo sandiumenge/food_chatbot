@@ -1,13 +1,10 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from .models import UserProfile
-from .forms import UserProfileForm
 from .services import AgentA, parse_foods
 from django import forms
 import openai
 import os
-from django.http import JsonResponse
-import json
 from .services.restaurant_recommender import recommend_restaurant
 
 class UserAnswerForm(forms.Form):
@@ -46,15 +43,18 @@ def chat_view(request):
                 foods = []
                 is_vegetarian = False
 
-            UserProfile.objects.create(
-                username="User",    # TODO: Add login here too and pass username
-                foods=foods,
-                raw_responses=raw_response,
-                is_vegetarian=is_vegetarian
-            )
+            if len(foods) < 3:
+                chat.append({'role':'agent', 'text': "Sorry, I couldn't understand your answer. Please try again."})
+            else:
+                UserProfile.objects.create(
+                    username="User",    # Could be improved with auth
+                    foods=foods,
+                    raw_responses=raw_response,
+                    is_vegetarian=is_vegetarian
+                )
 
-            recomendation = recommend_restaurant(foods, is_vegetarian)
-            chat.append({'role':'agent', 'text': recomendation})
+                recomendation = recommend_restaurant(foods, is_vegetarian)
+                chat.append({'role':'agent', 'text': recomendation})
 
     else:
         form = UserAnswerForm()
