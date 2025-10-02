@@ -2,8 +2,6 @@
 
 A Django-based chatbot web application that uses OpenAI's GPT models to interact with users about their favorite foods, simulates conversations between AI agents, and provides a REST API for querying vegetarian users. The project is containerized with Docker and designed for deployment on Azure App Service.
 
-This is a project done for the application process of the company Elephants in the Room.
-
 
 ## Structure
 
